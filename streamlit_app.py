@@ -1,36 +1,21 @@
-import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VirtualChem Lab</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 
-st.title("Visualisasi Cara Kita Menimbang")
+<body>
 
-st.write("Masukkan data berat hasil penimbangan")
+<h1>VirtualChem Lab</h1>
 
-# Input data
-hari = st.text_input("Hari")
-berat = st.number_input("Berat (kg)", min_value=0.0)
+<div class="menu">
+ <a href="/timbang">Simulasi Menimbang</a>
+</div>
 
-# Simpan data sementara
-if "data" not in st.session_state:
-    st.session_state.data = []
+<div class="menu">
+    <a href="/titrasi">Simulasi Titrasi</a>
+</div>
 
-if st.button("Tambah Data"):
-    st.session_state.data.append({
- "Hari": hari,
-        "Berat": berat
-    })
-# Tampilkan tabel
-if st.session_state.data:
-    df = pd.DataFrame(st.session_state.data)
-
-    st.subheader("Data Penimbangan")
-    st.dataframe(df)
-
-    # Grafik
-    fig, ax = plt.subplots()
-    ax.plot(df["Hari"], df["Berat"], marker='o')
-    ax.set_xlabel("Hari")
-    ax.set_ylabel("Berat (kg)")
-    ax.set_title("Grafik Penimbangan")
-
-    st.pyplot(fig)
+</body>
+</html>
